@@ -167,6 +167,8 @@ Practical implication:
 - Total day charge
 - Customer service calls
 
+- 这里只是相关性分析，不一定存在因果性。前三项可以用价格/服务敏感分析，最后一项expected issue：客服来电次数多-> churn rate高
+
 ### 3) Which features were One-Hot encoded (and why)
 **One-Hot encoded features**
 - `State`
