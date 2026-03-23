@@ -1,0 +1,17 @@
+{
+  "chosen_k": 2,
+  "silhouette": 0.142903135819519,
+  "plots": [
+    "kmeans_silhouette_vs_k.png",
+    "kmeans_inertia_vs_k.png",
+    "kmeans_k_sweep.csv"
+  ],
+  "feature_filter": {
+    "drop_state": true,
+    "drop_area_code": true,
+    "drop_charges": true,
+    "n_features_before": 73,
+    "n_features_after": 15,
+    "removed_features_count": 58
+  }
+}

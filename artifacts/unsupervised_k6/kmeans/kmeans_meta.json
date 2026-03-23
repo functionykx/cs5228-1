@@ -1,0 +1,9 @@
+{
+  "chosen_k": 6,
+  "silhouette": 0.06830700725247327,
+  "plots": [
+    "kmeans_silhouette_vs_k.png",
+    "kmeans_inertia_vs_k.png",
+    "kmeans_k_sweep.csv"
+  ]
+}
