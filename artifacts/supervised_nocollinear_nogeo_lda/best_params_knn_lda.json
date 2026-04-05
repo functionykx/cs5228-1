@@ -1,0 +1,11 @@
+{
+  "model": "knn_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.35707969700366193,
+  "best_params": {
+    "clf__n_neighbors": 5,
+    "clf__p": 1,
+    "clf__weights": "distance"
+  },
+  "lda_components": 1
+}

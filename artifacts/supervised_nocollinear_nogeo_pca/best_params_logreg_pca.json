@@ -1,0 +1,11 @@
+{
+  "model": "logreg_pca",
+  "scoring": "f1",
+  "best_score_cv": 0.4773332887697084,
+  "best_params": {
+    "clf__C": 10.0,
+    "clf__class_weight": "balanced",
+    "clf__penalty": "l1",
+    "pca__n_components": 15
+  }
+}

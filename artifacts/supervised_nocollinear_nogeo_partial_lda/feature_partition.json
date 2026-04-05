@@ -1,0 +1,25 @@
+{
+  "numeric_cols": [
+    "num__Account length",
+    "num__Number vmail messages",
+    "num__Total day minutes",
+    "num__Total day calls",
+    "num__Total eve minutes",
+    "num__Total eve calls",
+    "num__Total night minutes",
+    "num__Total night calls",
+    "num__Total intl minutes",
+    "num__Total intl calls",
+    "num__Customer service calls"
+  ],
+  "plan_cols": [
+    "cat__International plan_No",
+    "cat__International plan_Yes",
+    "cat__Voice mail plan_No",
+    "cat__Voice mail plan_Yes"
+  ],
+  "numeric_count": 11,
+  "plan_count": 4,
+  "lda_output_dim": 1,
+  "final_dim_after_transform": 5
+}

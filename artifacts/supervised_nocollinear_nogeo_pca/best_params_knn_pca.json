@@ -1,0 +1,11 @@
+{
+  "model": "knn_pca",
+  "scoring": "f1",
+  "best_score_cv": 0.4259690477015898,
+  "best_params": {
+    "clf__n_neighbors": 3,
+    "clf__p": 2,
+    "clf__weights": "uniform",
+    "pca__n_components": 12
+  }
+}

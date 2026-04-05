@@ -1,0 +1,19 @@
+{
+  "model": "logreg_partial_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.4695896713087773,
+  "best_params": {
+    "clf__C": 1.0,
+    "clf__class_weight": "balanced",
+    "clf__penalty": "l2"
+  },
+  "transform": {
+    "numeric_to_lda_components": 1,
+    "plan_passthrough": [
+      "cat__International plan_No",
+      "cat__International plan_Yes",
+      "cat__Voice mail plan_No",
+      "cat__Voice mail plan_Yes"
+    ]
+  }
+}

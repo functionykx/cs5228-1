@@ -1,0 +1,19 @@
+{
+  "model": "knn_partial_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.35118218548707764,
+  "best_params": {
+    "clf__n_neighbors": 7,
+    "clf__p": 2,
+    "clf__weights": "uniform"
+  },
+  "transform": {
+    "numeric_to_lda_components": 1,
+    "plan_passthrough": [
+      "cat__International plan_No",
+      "cat__International plan_Yes",
+      "cat__Voice mail plan_No",
+      "cat__Voice mail plan_Yes"
+    ]
+  }
+}
