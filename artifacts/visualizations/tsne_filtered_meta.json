@@ -1,0 +1,8 @@
+{
+  "feature_space": "drop geo + drop collinear charges",
+  "input_dim": 15,
+  "samples": 3333,
+  "perplexity": 30.0,
+  "compare_perplexities": "10,30,50",
+  "note": "Visualization only. Train and test are embedded together, so this is not for model evaluation."
+}
