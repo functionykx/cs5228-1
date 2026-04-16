@@ -1,0 +1,24 @@
+{
+  "model": "xgb",
+  "variant": "threshold_tuned",
+  "objective": "f1",
+  "threshold_steps": 201,
+  "threshold": 0.7000000000000001,
+  "constraints": {
+    "target_recall": null,
+    "target_precision": null
+  },
+  "oof_at_threshold": {
+    "threshold": 0.7000000000000001,
+    "precision_oof": 0.9154078549848943,
+    "recall_oof": 0.7809278350515464,
+    "f1_oof": 0.8428372739916551,
+    "target_recall": null,
+    "target_precision": null
+  },
+  "calibration": {
+    "enabled": false,
+    "method": null,
+    "size": null
+  }
+}

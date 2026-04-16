@@ -5,8 +5,11 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import xgboost as xgb
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
@@ -46,7 +49,7 @@ def load_filtered(preprocess_dir: Path) -> Dataset:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--preprocess-dir", default="artifacts/preprocess")
-    parser.add_argument("--out", default="artifacts/supervised_nocollinear_nogeo_lda")
+    parser.add_argument("--out", default="artifacts/supervised_lda_all")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
@@ -59,38 +62,47 @@ def main() -> None:
 
     model_spaces = {
         "logreg_lda": (
-            Pipeline(
-                [
-                    ("lda", LinearDiscriminantAnalysis(n_components=1)),
-                    (
-                        "clf",
-                        LogisticRegression(
-                            solver="liblinear",
-                            max_iter=5000,
-                            random_state=args.seed,
-                        ),
-                    ),
-                ]
-            ),
+            Pipeline([
+                ("lda", LinearDiscriminantAnalysis(n_components=1)),
+                ("clf", LogisticRegression(solver="liblinear", max_iter=5000, random_state=args.seed))
+            ]),
             {
-                "clf__C": [0.01, 0.1, 1.0, 10.0, 100.0],
-                "clf__penalty": ["l1", "l2"],
-                "clf__class_weight": [None, "balanced"],
-            },
+                "clf__C": [0.1, 1.0, 10.0],
+                "clf__class_weight": [None, "balanced"]
+            }
         ),
         "knn_lda": (
-            Pipeline(
-                [
-                    ("lda", LinearDiscriminantAnalysis(n_components=1)),
-                    ("clf", KNeighborsClassifier()),
-                ]
-            ),
+            Pipeline([
+                ("lda", LinearDiscriminantAnalysis(n_components=1)),
+                ("clf", KNeighborsClassifier())
+            ]),
             {
-                "clf__n_neighbors": [3, 5, 7, 9, 11, 15, 21],
-                "clf__weights": ["uniform", "distance"],
-                "clf__p": [1, 2],
-            },
+                "clf__n_neighbors": [5, 11, 21, 31],
+                "clf__weights": ["uniform", "distance"]
+            }
         ),
+        "hgb_lda": (
+            Pipeline([
+                ("lda", LinearDiscriminantAnalysis(n_components=1)),
+                ("clf", HistGradientBoostingClassifier(random_state=args.seed))
+            ]),
+            {
+                "clf__max_iter": [100, 200],
+                "clf__max_depth": [3, 5, None],
+                "clf__learning_rate": [0.01, 0.1]
+            }
+        ),
+        "xgb_lda": (
+            Pipeline([
+                ("lda", LinearDiscriminantAnalysis(n_components=1)),
+                ("clf", xgb.XGBClassifier(random_state=args.seed, n_jobs=-1, eval_metric="logloss"))
+            ]),
+            {
+                "clf__n_estimators": [100, 200],
+                "clf__learning_rate": [0.05, 0.1],
+                "clf__max_depth": [3, 5]
+            }
+        )
     }
 
     for name, (pipeline, grid) in model_spaces.items():
@@ -127,7 +139,7 @@ def main() -> None:
         "# LDA Models Summary",
         "",
         "- Feature set: drop geo + drop collinear charge features (15 dimensions before LDA)",
-        "- Models: LDA + Logistic Regression, LDA + KNN",
+        "- Models: LDA + Logistic Regression, LDA + KNN, LDA + HGB, LDA + XGB",
         "- Binary classification implies LDA projects to 1 discriminant axis",
         "- Selection: train-only 5-fold CV, optimize F1",
         "",

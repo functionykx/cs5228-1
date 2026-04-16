@@ -1,0 +1,10 @@
+{
+  "model": "logreg_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.4800093590794038,
+  "best_params": {
+    "clf__C": 1.0,
+    "clf__class_weight": "balanced"
+  },
+  "lda_components": 1
+}

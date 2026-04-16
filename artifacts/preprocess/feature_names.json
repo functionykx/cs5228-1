@@ -61,15 +61,11 @@
   "num__Number vmail messages",
   "num__Total day minutes",
   "num__Total day calls",
-  "num__Total day charge",
   "num__Total eve minutes",
   "num__Total eve calls",
-  "num__Total eve charge",
   "num__Total night minutes",
   "num__Total night calls",
-  "num__Total night charge",
   "num__Total intl minutes",
   "num__Total intl calls",
-  "num__Total intl charge",
   "num__Customer service calls"
 ]

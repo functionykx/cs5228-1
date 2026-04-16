@@ -10,6 +10,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
+import xgboost as xgb
+from sklearn.ensemble import HistGradientBoostingClassifier
 
 from src.supervised import Dataset, fit_and_evaluate, write_metrics_table
 
@@ -93,6 +95,30 @@ def main() -> None:
                 "clf__p": [1, 2],
             },
         ),
+        "hgb_pca": (
+            Pipeline([
+                ("pca", PCA(random_state=args.seed)),
+                ("clf", HistGradientBoostingClassifier(random_state=args.seed))
+            ]),
+            {
+                "pca__n_components": [5, 10, 15],
+                "clf__max_iter": [100, 200, 300],
+                "clf__learning_rate": [0.05, 0.1, 0.2],
+                "clf__max_depth": [3, 5, None],
+            },
+        ),
+        "xgb_pca": (
+            Pipeline([
+                ("pca", PCA(random_state=args.seed)),
+                ("clf", xgb.XGBClassifier(random_state=args.seed, n_jobs=-1, eval_metric="logloss"))
+            ]),
+            {
+                "pca__n_components": [5, 10, 15],
+                "clf__n_estimators": [100, 200],
+                "clf__max_depth": [3, 6],
+                "clf__learning_rate": [0.1, 0.2],
+            },
+        ),
     }
 
     for name, (pipeline, grid) in model_spaces.items():
@@ -128,7 +154,7 @@ def main() -> None:
         "# PCA Models Summary",
         "",
         "- Feature set: drop geo + drop collinear charge features (15 dimensions before PCA)",
-        "- Models: PCA + Logistic Regression, PCA + KNN",
+        "- Models: PCA + Logistic Regression, PCA + KNN, PCA + XGB, PCA + HGB"
         "- Selection: train-only 5-fold CV, optimize F1",
         "",
         "```",

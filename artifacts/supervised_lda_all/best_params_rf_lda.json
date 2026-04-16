@@ -1,0 +1,11 @@
+{
+  "model": "rf_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.4744722896823439,
+  "best_params": {
+    "clf__class_weight": "balanced",
+    "clf__max_depth": 5,
+    "clf__n_estimators": 400
+  },
+  "lda_components": 1
+}
