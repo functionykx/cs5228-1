@@ -86,7 +86,7 @@ def main() -> None:
     parser.add_argument("--model-set", default="original", choices=["original", "alt"])
     parser.add_argument("--strong-regularization", action="store_true", default=False)
     parser.add_argument("--threshold-optimize", action="store_true", default=False)
-    parser.add_argument("--threshold-models", default="logreg,knn")
+    parser.add_argument("--threshold-models", default="logreg,knn,xgb")
     parser.add_argument("--threshold-steps", type=int, default=201)
     parser.add_argument("--target-recall", type=float, default=None)
     parser.add_argument("--target-precision", type=float, default=None)
