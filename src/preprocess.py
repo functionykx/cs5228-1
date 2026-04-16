@@ -40,7 +40,17 @@ def infer_feature_types(
 ) -> tuple[list[str], list[str]]:
     categorical = []
     numerical = []
+
+    redundant_cols = [
+        "Total day charge", 
+        "Total eve charge", 
+        "Total night charge", 
+        "Total intl charge"
+    ]
+
     for col in X.columns:
+        if col in redundant_cols:
+            continue
         if col == "Area code" and area_code_as_categorical:
             categorical.append(col)
             continue

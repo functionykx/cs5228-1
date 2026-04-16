@@ -4,6 +4,7 @@ import inspect
 import json
 from dataclasses import dataclass
 from pathlib import Path
+import xgboost as xgb
 
 import matplotlib
 
@@ -272,6 +273,12 @@ def baseline_models(*, seed: int = 42, model_set: str = "original") -> dict[str,
                 n_jobs=-1,
                 class_weight="balanced",
             ),
+            "xgb": xgb.XGBClassifier(
+                random_state=seed, 
+                n_jobs=-1, 
+                eval_metric="logloss",
+                use_label_encoder=False
+            ) # try XGBoost
         }
     return {
         "logreg": LogisticRegression(
@@ -324,6 +331,17 @@ def tuned_search_spaces(
                     "class_weight": [None, "balanced"],
                 },
             ),
+            "xgb": (
+                xgb.XGBClassifier(random_state=seed, n_jobs=-1, eval_metric="logloss"),
+                {
+                    "n_estimators": [100, 200, 400],
+                    "max_depth": [3, 6, 10],
+                    "learning_rate": [0.01, 0.1, 0.2],
+                    "subsample": [0.8, 1.0],
+                    "colsample_bytree": [0.8, 1.0],
+                    "gamma": [0, 0.1, 0.2]
+                }
+            )
         }
 
     return {

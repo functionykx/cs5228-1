@@ -1,0 +1,11 @@
+{
+  "model": "hgb_pca",
+  "scoring": "f1",
+  "best_score_cv": 0.5866777508146768,
+  "best_params": {
+    "clf__learning_rate": 0.2,
+    "clf__max_depth": null,
+    "clf__max_iter": 200,
+    "pca__n_components": 15
+  }
+}

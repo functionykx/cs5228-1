@@ -1,0 +1,11 @@
+{
+  "model": "logreg",
+  "scoring": "f1",
+  "n_iter": 20,
+  "best_score_cv": 0.48404503422137807,
+  "best_params": {
+    "penalty": "l2",
+    "class_weight": null,
+    "C": 0.05
+  }
+}

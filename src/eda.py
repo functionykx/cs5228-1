@@ -131,8 +131,21 @@ def correlation_analysis(
         return [], None
 
     corr = X[numeric_cols].corr(numeric_only=True).fillna(0.0)
-    plt.figure(figsize=(12, 10))
-    sns.heatmap(corr, cmap="coolwarm", center=0, square=True)
+
+    plt.figure(figsize=(14, 12))
+    sns.heatmap(
+        corr, 
+        cmap="RdBu_r",
+        center=0,
+        square=True, 
+        annot=True,
+        fmt=".2f",
+        annot_kws={"size": 8},
+        linewidths=0.5,
+        cbar_kws={"shrink": .8},
+        vmin=-1, vmax=1
+    )
+    
     plt.title("Correlation heatmap (numeric features)")
     heatmap_path = out_dir / "correlation_heatmap.png"
     _savefig(heatmap_path)

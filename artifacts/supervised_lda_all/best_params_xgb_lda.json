@@ -1,0 +1,11 @@
+{
+  "model": "xgb_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.2971054488852418,
+  "best_params": {
+    "clf__learning_rate": 0.1,
+    "clf__max_depth": 3,
+    "clf__n_estimators": 200
+  },
+  "lda_components": 1
+}

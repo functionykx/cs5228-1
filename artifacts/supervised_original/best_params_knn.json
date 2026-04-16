@@ -1,0 +1,11 @@
+{
+  "model": "knn",
+  "scoring": "f1",
+  "n_iter": 20,
+  "best_score_cv": 0.40907144907144904,
+  "best_params": {
+    "weights": "uniform",
+    "p": 2,
+    "n_neighbors": 3
+  }
+}

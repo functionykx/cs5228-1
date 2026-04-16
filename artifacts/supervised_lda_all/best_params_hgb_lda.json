@@ -1,0 +1,11 @@
+{
+  "model": "hgb_lda",
+  "scoring": "f1",
+  "best_score_cv": 0.3360660750937971,
+  "best_params": {
+    "clf__learning_rate": 0.1,
+    "clf__max_depth": null,
+    "clf__max_iter": 200
+  },
+  "lda_components": 1
+}
